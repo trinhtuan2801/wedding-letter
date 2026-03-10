@@ -14,9 +14,6 @@ export function Book() {
   }, [location.search]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsOpen(true);
-    }, 3000);
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };

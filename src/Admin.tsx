@@ -5,7 +5,7 @@ export default function Admin() {
   const handleCopy = () => {
     // window location without admin path, and has ?name=name
     const url = new URL(window.location.href);
-    url.pathname = '';
+    url.searchParams.delete('admin');
     url.searchParams.set('name', name);
     navigator.clipboard.writeText(url.href);
   };
