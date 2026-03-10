@@ -15,7 +15,7 @@ export default function Admin() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: '20dvh',
+        padding: '20dvh 20px',
         gap: '8px',
       }}
     >
@@ -23,7 +23,7 @@ export default function Admin() {
         type='search'
         value={name}
         onChange={(e) => setName(e.target.value)}
-        style={{ width: '80%', maxWidth: '500px', height: '30px' }}
+        style={{ flexGrow: 1, maxWidth: '500px', height: '30px', fontSize: '16px' }}
       />
       <button style={{ height: '30px', width: '60px' }} onClick={handleCopy}>
         copy
