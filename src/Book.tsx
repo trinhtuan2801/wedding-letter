@@ -2,16 +2,24 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import bookPageImage from './assets/front-cover.jpg';
 import contentRightImage from './assets/content-right.jpeg';
-import contentLeftImage from './assets/content-left.jpeg';
 
 const LEFT_COVER_WIDTH_RATIO = 1; // left cover is 65% of book width
 
 export function Book() {
   const [isOpen, setIsOpen] = useState(false);
+  const isOpenRef = useRef(false);
+  isOpenRef.current = isOpen;
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const name = useMemo(() => {
     return new URLSearchParams(location.search).get('name');
   }, [location.search]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (isOpenRef.current) return;
+      setIsOpen(true);
+    }, 3000);
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -40,7 +48,7 @@ export function Book() {
       <div
         style={{
           position: 'relative',
-          width: 'min(70vw, calc(80dvh * 210 / 297))',
+          width: 'min(70vw, calc(90dvh * 210 / 297))',
           aspectRatio: '210 / 297',
           transformStyle: 'preserve-3d',
           containerType: 'size',
@@ -115,18 +123,7 @@ export function Book() {
               backfaceVisibility: 'hidden',
               transform: 'rotateY(180deg) translateZ(0.5px)',
             }}
-          >
-            <img
-              src={contentLeftImage}
-              alt='Book page'
-              style={{
-                height: '100%',
-                width: '100%',
-                objectFit: 'contain',
-                objectPosition: 'right',
-              }}
-            />
-          </div>
+          />
         </motion.div>
       </div>
     </div>
