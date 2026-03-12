@@ -4,6 +4,13 @@ import bookPageImage from './assets/front-cover.jpg';
 import contentRightImage from './assets/content-right.jpeg';
 
 const LEFT_COVER_WIDTH_RATIO = 1; // left cover is 65% of book width
+const BORDER_RADIUS = '6px';
+const borderStyle = {
+  borderRadius: BORDER_RADIUS,
+  border: '1px solid #faf6f0', // i want darker color
+  overflow: 'hidden',
+  boxShadow: '0 0 2px rgba(0,0,0,0.2)',
+};
 
 export function Book() {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +55,7 @@ export function Book() {
       <div
         style={{
           position: 'relative',
-          width: 'min(70vw, calc(90dvh * 210 / 297))',
+          width: 'min(80vw, calc(90dvh * 210 / 297))',
           aspectRatio: '210 / 297',
           transformStyle: 'preserve-3d',
           containerType: 'size',
@@ -60,7 +67,6 @@ export function Book() {
             position: 'absolute',
             inset: 0,
             backgroundColor: '#f5f0e6',
-            borderRadius: '2px',
             zIndex: 1,
             transform: 'translateZ(-1px)',
             transformStyle: 'preserve-3d',
@@ -71,6 +77,7 @@ export function Book() {
             display: 'flex',
             justifyContent: 'center',
             paddingTop: '12%',
+            ...borderStyle,
           }}
         >
           <div style={{ fontSize: '4cqh', fontWeight: 'bold' }}>{name}</div>
@@ -89,7 +96,7 @@ export function Book() {
           }}
           animate={{
             rotateY: isOpen ? -180 : 0,
-            z: 2,
+            // z: 2,
           }}
           transition={{
             type: 'spring',
@@ -102,10 +109,9 @@ export function Book() {
               position: 'absolute',
               inset: 0,
               backgroundColor: '#8b4513',
-              borderRadius: '2px',
-              boxShadow: '2px 2px 8px rgba(0,0,0,0.2)',
               backfaceVisibility: 'hidden',
               transform: 'translateZ(0.5px)',
+              ...borderStyle,
             }}
           >
             <img
@@ -119,9 +125,9 @@ export function Book() {
               position: 'absolute',
               inset: 0,
               backgroundColor: 'white',
-              borderRadius: '2px',
               backfaceVisibility: 'hidden',
               transform: 'rotateY(180deg) translateZ(0.5px)',
+              ...borderStyle,
             }}
           />
         </motion.div>

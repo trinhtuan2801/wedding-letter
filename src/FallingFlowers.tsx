@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 const FLOWER_CHARS = ["✿", "❀", "✾", "❁"];
-const COUNT = 25;
+const COUNT = 100;
 
 function randomBetween(min: number, max: number) {
   return min + Math.random() * (max - min);
@@ -24,7 +24,7 @@ export function FallingFlowers() {
           opacity: randomBetween(0.3, 0.7),
           hue: randomBetween(320, 360),
           // Stagger initial Y so flowers are spread along the fall path (continuous flow)
-          initialY: -randomBetween(20, 100),
+          initialY: i > COUNT / 2 ? -randomBetween(10, 50) : -randomBetween(20, 100),
           // Slight tilt only: avoid rotateX/Y near ±90° so flowers stay visible
           rotateX: randomBetween(-40, 40),
           rotateY: randomBetween(-40, 40),
@@ -68,7 +68,7 @@ export function FallingFlowers() {
             rotateZ: 0,
           }}
           animate={{
-            y: "110vh",
+            y: "130vh",
             rotateX: f.rotateX,
             rotateY: f.rotateY,
             rotateZ: f.rotateZ,
